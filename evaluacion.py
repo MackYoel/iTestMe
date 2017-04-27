@@ -131,8 +131,12 @@ class Evaluacion():
 						}
 						return self.crear_datos(datosEnviar)
 			else:
-				print("No hay una consigna para verificar aun..")
-				
+				return {
+						"tipo":"error"
+							}
+	def resetearPregunta(self):
+		self.pregunta_actual = -1
+		
 	def respuestaAcertada(self):
 		self.progresoActual += 10
 		self.respuestasAcertadas+=1

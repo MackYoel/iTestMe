@@ -47,9 +47,10 @@ def examen():
 			return datos_html
 			
 		#Si no se recibio un tipo de respuesta valido
-		if(tipoPregunta == None):
+		if(tipoPregunta == None or respuestaRecibida == None):
+			self.examen_actual.resetearPregunta()
 			return redirect("/examen")
-	
+		
 		#Si se recibio una respuesta tipo choice
 		if(tipoPregunta == "choice"):
 			if(verificacionItem == "valida"):
