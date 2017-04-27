@@ -116,7 +116,7 @@ class Evaluacion():
 			}
 			return self.crear_datos(datos)
 		else:
-			if(self.datos_actual != -1 and self.datos_actual["tipo"] == "consigna"):
+			if(self.datos_actual["tipo"] == "consigna"):
 					dato_real = self.db_consigna[self.datos_actual["id"]][1]
 					dato_comp = arg
 					if(self.compararDatos(dato_real, dato_comp)):
@@ -151,7 +151,10 @@ class Evaluacion():
 		
 if __name__ == "__main__":
 	test = Evaluacion()
-	print(test.multipleChoice())
+	print(test.lanzarConsigna())
+	print(test.lanzarConsigna("asd"))
+	print(test.lanzarConsigna())
+	print(test.lanzarConsigna("sss"))
 	
 
 

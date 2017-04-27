@@ -24,12 +24,12 @@ def index():
 @app.route("/examen",methods=["GET","POST"])
 def examen():
 	if request.method == "GET":
-		datos = examen_actual.lanzarPregunta()
+		datos = examen_actual.lanzarConsigna()
 		#Si se va a enviar una consigna multiple choice
 		if(datos["tipo"] == "choice"):				
 			return render_template("multipleChoice.html", 
 															**validarDatos_get(datos) )
-		
+															
 		#Si se va a enviar una consigna tipo Escrita
 		if(datos["tipo"] == "consigna"):
 			return render_template("escribirConsigna.html", 
@@ -47,7 +47,7 @@ def examen():
 			return datos_html
 			
 		#Si no se recibio un tipo de respuesta valido
-		if(tipoPregunta == None or respuestaRecibida == None):
+		if(tipoPregunta == None):
 			examen_actual.resetearPregunta()
 			return redirect("/examen")
 		
@@ -62,7 +62,6 @@ def examen():
 		#Si recibio para validar una respuesta escrita
 		if(tipoPregunta == "consignaVerificar"):
 			verificacionConsigna = examen_actual.lanzarConsigna(respuestaRecibida)
-			print(verificacionConsigna)
 			return render_template("consignaVerificada.html", 
 														**validarDatos_get(verificacionConsigna) )
 		#Si se recibio una respuesta buena o mala
