@@ -54,7 +54,7 @@ class Evaluacion():
 	def lanzarPregunta(self):
 		tipos_c = {
 				"choice":self.multipleChoice,
-				"consigna":self.lanzarConsigna
+				"consigna":self.gConsigna
 		}
 		if(self.pregunta_actual != -1):#si hay una pregunta aun no contestada se mantiene
 			return self.pregunta_actual
@@ -100,7 +100,7 @@ class Evaluacion():
 		else:
 			return False
 			
-	def lanzarConsigna(self, arg=None):
+	def gConsigna(self, arg=None):
 		"""
 			Si se invoca sin argumento, es para lanzar una consigna
 			de lo contrario es para verificar y dar la respuesta
@@ -151,10 +151,10 @@ class Evaluacion():
 		
 if __name__ == "__main__":
 	test = Evaluacion()
-	print(test.lanzarConsigna())
-	print(test.lanzarConsigna("asd"))
-	print(test.lanzarConsigna())
-	print(test.lanzarConsigna("sss"))
+	print(test.gConsigna())
+	print(test.gConsigna("asd"))
+	print(test.gConsigna())
+	print(test.gConsigna("sss"))
 	
 
 
