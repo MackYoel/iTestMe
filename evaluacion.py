@@ -116,7 +116,7 @@ class Evaluacion():
 			}
 			return self.crear_datos(datos)
 		else:
-			if(self.datos_actual["tipo"] == "consigna"):
+			if(self.datos_actual != -1 and self.datos_actual["tipo"] == "consigna"):
 					dato_real = self.db_consigna[self.datos_actual["id"]][1]
 					dato_comp = arg
 					if(self.compararDatos(dato_real, dato_comp)):
@@ -133,7 +133,7 @@ class Evaluacion():
 			else:
 				return {
 						"tipo":"error"
-							}
+						}
 	
 	def resetearPregunta(self):
 		self.pregunta_actual = -1
