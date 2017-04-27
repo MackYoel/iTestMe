@@ -24,7 +24,7 @@ def index():
 @app.route("/examen",methods=["GET","POST"])
 def examen():
 	if request.method == "GET":
-		datos = examen_actual.gConsigna()
+		datos = examen_actual.lanzarPregunta()
 		#Si se va a enviar una consigna multiple choice
 		if(datos["tipo"] == "choice"):				
 			return render_template("multipleChoice.html", 
