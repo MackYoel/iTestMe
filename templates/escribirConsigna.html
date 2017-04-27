@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{titulo}}</title>
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static',filename='styles/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static',filename='styles/css/animate.css') }}" rel="stylesheet">
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<style>
+		.botonOpcion { 
+			font-size:20px;
+			position:static;
+		}
+		#tituloAclaracionBueno {
+			font-size:30px;
+			color:green;
+		}
+		#tituloAclaracionMalo {
+			font-size:30px;
+			color:red;
+		}
+		#textoAclaracion {
+			font-size:20px;
+		}
+		
+	</style>
+  </head>
+  <body>
+	<!-- BARRA PROGRESO -->
+	<center>
+		<div class="progress" width=22>
+			<div class="progress-bar progress-bar-striped" style="width:{{progresoActual}}%"></div>
+		</div>
+	</center>
+	<center>
+		<!-- CONSIGNA PLANTEADA -->
+		<h1 class="animated fadeInLeft">{{ consigna }}</h1>
+		<p class="animated fadeInRight" style="color:#CBC4C4">_____________________________</p>
+		<form id="enviarRespuesta" method="POST">
+			<input type="text" id="respuestaEscrita" name="respuestaEscrita" class="form-control animated rubberBand" placeholder="Escribir una respuesta.." style="width:250px">
+			
+			<input type="text"  style="display:none" name="tipoPregunta" value="consignaVerificar">
+			<input type="text"  style="display:none" name="respEnv" value="0">
+			<br><br>
+			<button type="button" id="botonEnviar" class="btn btn-success animated bounceInUp">Enviar Respuesta</button>
+		</form>
+		<br>
+		<br>
+		<br>
+		<br>
+		<footer style="font-size:20px;font-family:Arial"><span style="color:green">Bien:{{aciertos}}</span> <span style="color:red">Mal:{{desaciertos}}</span></footer>
+		<form id="datosEnviar" method="POST">
+			<input name="respEnv" id="respEnv" type="text" value="0" style="display:none">
+			<input name="tipoPregunta" id="tipoPregunta" type="text" value="choice" style="display:none">
+		</form>
+	</center>
+		
+	<script>
+	$(document).ready(function(){
+		$("#botonEnviar").click(function(){
+			$("#enviarRespuesta").submit()
+		});
+	});
+	</script>
+  </body>
+  
+</html>

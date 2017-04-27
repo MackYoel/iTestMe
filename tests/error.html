@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Web de Test</title>
+	</head>
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	 <body>
+	<!-- BARRA PROGRESO -->
+	<center>
+		<div class="progress" width=22>
+			<div class="progress-bar progress-bar-striped" style="{{progresoActual}}"></div>
+		</div>
+	</center>
+	
+	<center>
+		<!-- PREGUNTA PLANTEADA -->
+		<h1 id="texto" class="animated fadeInLeft">{{pregunta}}</h1>
+		<br>
+		<br>
+		<br>
+		<!-- BOTONES DE OPCIONES -->
+		<button type="button" id="opcion1" class="btn btn-primary animated bounceInRight">{{opcion_1}}</button>
+		<br>
+		<br>
+		<button type="button" id="opcion2" class="btn btn-primary animated bounceInLeft">{{opcion_2}}</button>
+		<br>
+		<br>
+		<button type="button" id="opcion3" class="btn btn-primary animated bounceInRight">{{opcion_3}}</button>
+		<br>
+		<br>
+		<br>
+		<br>
+		<footer style="font-size:20px;font-family:Arial"><span style="color:green">Bien:{{aciertos}}</span> <span style="color:red">Mal:{{desaciertos}}</span></footer>
+	</center>
+		
+	</body>
+	<script>
+	$(document).ready(function(){
+		$("#texto").text("Hola mundo!!!");
+		$("#texto").animate({ 'top':'300px'},1500);
+		
+	});
+	
+	
+	</script>
+</html>

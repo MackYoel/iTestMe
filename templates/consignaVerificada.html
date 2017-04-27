@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{titulo}}</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static',filename='styles/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static',filename='styles/css/animate.css') }}" rel="stylesheet">
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<style>
+		#tituloBueno {
+			font-size:30px;
+			color:green;
+		}
+		#tituloMalo {
+			font-size:30px;
+			color:red;
+		}
+		#textoAclaracion {
+			font-size:20px;
+		}
+	</style>
+  </head>
+  <body>
+	<center>
+	<!-- BARRA PROGRESO -->
+     <div class="progress" width=22>
+     <div class="progress-bar progress-bar-striped" style="width:{{progresoActual}}"></div>
+	</div>
+	<h2 id="correccion"></h2>
+	<h1 id="textoAclaracion"></h1>
+	<img id="imagenmano" src="">
+	<form id="datosEnviar" method="POST">
+		<input name="tipoPregunta" value="consignaVerificacion" type="text" style="visibility:hidden">
+		<input name="respEnv" value="{{ valida }}" type="text" style="visibility:hidden">
+	</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer style="font-size:20px;font-family:Arial"><span style="color:green">Bien:{{aciertos}}</span> <span style="color:red">Mal:{{desaciertos}}</span></footer>
+	</center>
+  </body>
+  <script>
+	  var verificacionRecibida = "{{ valida }}"
+	  var aclaracionRespuesta = "{{ aclaracion }}"
+	  var img_megusta = "{{ url_for('static',filename='imagenes/mg.jpg') }}"
+	  var img_nomegusta = "{{ url_for('static',filename='imagenes/nmg.jpg') }}"
+	 $(document).ready(function(){
+			if(verificacionRecibida == "respuestaValida"){
+				$("#correccion").text("Muy bien!!").attr("id","tituloBueno").addClass("animated pulse")
+				$("#textoAclaracion").text(aclaracionRespuesta).show().addClass("animated tada")
+				//$("#imagenmano").attr("src", img_megusta);
+			}else{
+				$("#correccion").text("Respuesta incorrecta").attr("id","tituloMalo").addClass("animated shake")
+				//$("#imagenmano").attr("src", img_nomegusta);
+			}
+			 setTimeout(function(){
+						$("#datosEnviar").submit();           
+					}, 5000)
+	});
+  </script>
+</html>
