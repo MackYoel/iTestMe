@@ -48,7 +48,7 @@ def examen():
 			
 		#Si no se recibio un tipo de respuesta valido
 		if(tipoPregunta == None or respuestaRecibida == None):
-			self.examen_actual.resetearPregunta()
+			examen_actual.resetearPregunta()
 			return redirect("/examen")
 		
 		#Si se recibio una respuesta tipo choice

@@ -134,6 +134,7 @@ class Evaluacion():
 				return {
 						"tipo":"error"
 							}
+	
 	def resetearPregunta(self):
 		self.pregunta_actual = -1
 		
