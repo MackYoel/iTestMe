@@ -67,10 +67,6 @@ def examen():
 					examen_actual.respuestaInvalida()
 			return render_template("consignaVerificada.html", 
 														**validarDatos_get(verificacionConsigna) )
-
-			
-		
-		
 		return render_template("error.html")
 
 if __name__ == "__main__":

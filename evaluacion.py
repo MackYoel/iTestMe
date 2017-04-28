@@ -21,6 +21,10 @@ for dbs in dbs_index:#Crear dbs
 			else:
 				index+=1
 
+
+	
+	
+
 class Evaluacion():
 	def __init__(self):
 		self.db_choice = dbs_index[1][0]
@@ -29,18 +33,29 @@ class Evaluacion():
 		self.respuestasAcertadas = 0
 		self.respuestasDesacertadas = 0
 		self.notaFinal = 0
-		self.pregunta_actual = -1
+		self.pregunta_actual = -1 #<<<<<<<<<<< REVISAR
 		self.datos_actual = None
+		self.dificultad = "cualquiera"
 	
 		self.multiPost = False #Temporal para evitar el problema de recibir doble post
+		self.sesionesUsuarios = {
+			"admin":{#Sesion para test
+				"progresoActual":0,
+				"respuestasAcertadas":0,
+				"respuestasDesacertadas":0,
+				"notaFinal":0,
+				"pregunta_actual":-1,
+				"datos_actual":None,
+				"dificultad":"cualquiera"
+				}
+		}
 		
-	def iniciarExamen(self,usuario):
+	def iniciarExamen(self, nombreUsuario):
 		print("Examen iniciado..")
 		for m in range(10):
 			self.multipleChoice()
 		print("Examen finalizado..")
-		
-		
+				
 	def desordenar_dic(self, lista):
 		lista = lista
 		listaFinal = {}
@@ -81,14 +96,26 @@ class Evaluacion():
 		self.datos_actual = datos
 		return datos
 		
+	def elegirUna(self, desde):
+		if(self.dificultad != "cualquiera"):
+			filtrada = {}
+			for m in desde:
+				if(desde[m][1] == self.dificultad):
+					filtrada[m] = desde[m]
+		else:
+			filtrada = self.db_choice
+			
+		return desde[random.choice(list(filtrada))]
+			
 	def multipleChoice(self):
-		pElegida = self.db_choice[random.choice(list(self.db_choice))]
-		rDesordenadas = self.desordenar(pElegida[2:])
+		pElegida = self.elegirUna(self.db_choice)
+		rDesordenadas = self.desordenar(pElegida[3:])
 		datos = {
 				"tipo":"choice",
 				"pregunta":pElegida[0],
-				"aclaracion":pElegida[1],
-				"opcionCorrecta":pElegida[2],
+				"categoria":pElegida[1],
+				"aclaracion":pElegida[2],
+				"opcionCorrecta":pElegida[3],
 				"opcionesChoice":rDesordenadas,
 				"cantidadOpciones":len(rDesordenadas)
 		}
@@ -108,23 +135,20 @@ class Evaluacion():
 			return False
 			
 	def gConsigna(self, arg=None):
-		"""
-			Si se invoca sin argumento, es para lanzar una consigna
-			de lo contrario es para verificar y dar la respuesta
-		"""
 		if(arg is None):
 			elec = random.choice(list(self.db_consigna))
-			pElegida = self.db_consigna[elec]
+			pElegida = self.elegirUna(self.db_consigna)
 			datos =  {
+					"categoria":pElegida[1],
 					"tipo":"consigna",
 					"id":elec,
 					"consigna":pElegida[0],
-					"aclaracion":pElegida[2],
+					"aclaracion":pElegida[3],
 			}
 			return self.crear_datos(datos)
 		else:
 			if(self.datos_actual["tipo"] == "consigna"):
-					dato_real = self.db_consigna[self.datos_actual["id"]][1]
+					dato_real = self.db_consigna[self.datos_actual["id"]][2]
 					dato_comp = arg
 					if(self.compararDatos(dato_real, dato_comp)):
 						datosEnviar =  {
@@ -165,9 +189,6 @@ class Evaluacion():
 if __name__ == "__main__":
 	test = Evaluacion()
 	print(test.gConsigna())
-	print(test.gConsigna("asd"))
-	print(test.gConsigna())
-	print(test.gConsigna("sss"))
 	
 
 
