@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{titulo}}</title>
-
     <!-- Bootstrap -->
     <link href="{{ url_for('static',filename='styles/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ url_for('static',filename='styles/css/animate.css') }}" rel="stylesheet">
@@ -30,6 +29,9 @@
      <div class="progress" width=22>
      <div class="progress-bar progress-bar-striped" style="width:{{progresoActual}}%"></div>
 	</div>
+	<h1 class="animated fadeInLeft">{{consigna}}</h1>
+	<p class="animated fadeInRight" style="color:#CBC4C4">_____________________________</p>
+	<button type="button" id="botonOpcion" class="botonOpcion">{{ respuestaDada }}</button>
 	<h2 id="correccion"></h2>
 	<h1 id="textoAclaracion"></h1>
 	<img id="imagenmano" src="">
@@ -51,15 +53,17 @@
 	  var img_nomegusta = "{{ url_for('static',filename='imagenes/nmg.jpg') }}"
 	 $(document).ready(function(){
 			if(verificacionRecibida == "respuestaValida"){
+				$("#botonOpcion").addClass("btn btn-success animated bounceIn")
 				$("#correccion").text("Muy bien!!").attr("id","tituloBueno").addClass("animated pulse")
 				$("#textoAclaracion").text(aclaracionRespuesta).show().addClass("animated tada")
 				//$("#imagenmano").attr("src", img_megusta);
 			}else{
+				$("#botonOpcion").addClass("btn btn-danger animated bounceIn")
 				$("#correccion").text("Respuesta incorrecta").attr("id","tituloMalo").addClass("animated shake")
 				//$("#imagenmano").attr("src", img_nomegusta);
 			}
 			 setTimeout(function(){
-						$("#datosEnviar").submit();           
+						window.location.href = "/examen"       
 					}, 5000)
 	});
   </script>

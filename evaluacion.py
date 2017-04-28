@@ -4,6 +4,10 @@ dbs_index = [
 	[{}, "consignas.txt"], 
 	[{}, "choices.txt"]
 ]
+sesionesActuales = {
+
+}
+
 for dbs in dbs_index:#Crear dbs
 	index = 0
 	with open(dbs[1], "r") as archivo_p:
@@ -28,7 +32,9 @@ class Evaluacion():
 		self.pregunta_actual = -1
 		self.datos_actual = None
 	
-	def iniciarExamen(self):
+		self.multiPost = False #Temporal para evitar el problema de recibir doble post
+		
+	def iniciarExamen(self,usuario):
 		print("Examen iniciado..")
 		for m in range(10):
 			self.multipleChoice()
@@ -86,6 +92,7 @@ class Evaluacion():
 				"opcionesChoice":rDesordenadas,
 				"cantidadOpciones":len(rDesordenadas)
 		}
+		self.pregunta_actual = "choice"
 		return self.crear_datos(datos)
 		
 	def compararDatos(self, original, tipeado):
@@ -121,13 +128,17 @@ class Evaluacion():
 					dato_comp = arg
 					if(self.compararDatos(dato_real, dato_comp)):
 						datosEnviar =  {
+							"consigna":self.datos_actual["consigna"],
 							"valida":"respuestaValida",
-							"aclaracion":self.datos_actual["aclaracion"]
+							"aclaracion":self.datos_actual["aclaracion"],
+							"respuestaDada":dato_comp,
 						}
 						return self.crear_datos(datosEnviar)
 					else:
 						datosEnviar =  {
-							"valida":"respuestaInvalida"
+							"consigna":self.datos_actual["consigna"],
+							"valida":"respuestaInvalida",
+							"respuestaDada":dato_comp,
 						}
 						return self.crear_datos(datosEnviar)
 			else:
@@ -139,14 +150,16 @@ class Evaluacion():
 		self.pregunta_actual = -1
 		
 	def respuestaAcertada(self):
-		self.progresoActual += 10
-		self.respuestasAcertadas+=1
-		self.pregunta_actual = -1
-		
+		if(self.pregunta_actual != -1):
+			self.progresoActual += 10
+			self.respuestasAcertadas+=1
+			self.pregunta_actual = -1
+			
 	def respuestaInvalida(self):
-		self.progresoActual += 10
-		self.respuestasDesacertadas+= 1
-		self.pregunta_actual = -1
+		if(self.pregunta_actual != -1):
+			self.progresoActual += 10
+			self.respuestasDesacertadas+= 1
+			self.pregunta_actual = -1
 		
 		
 if __name__ == "__main__":

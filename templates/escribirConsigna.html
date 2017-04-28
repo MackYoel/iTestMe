@@ -41,9 +41,8 @@
 		<p class="animated fadeInRight" style="color:#CBC4C4">_____________________________</p>
 		<form id="enviarRespuesta" method="POST">
 			<input type="text" id="respuestaEscrita" name="respuestaEscrita" class="form-control animated rubberBand" placeholder="Escribir una respuesta.." style="width:250px">
-			
 			<input type="text"  style="display:none" name="tipoPregunta" value="consignaVerificar">
-			<input type="text"  style="display:none" name="respEnv" value="0">
+			<input type="text"  style="display:none" id="respEnv" name="respEnv" value="">
 			<br><br>
 			<button type="button" id="botonEnviar" class="btn btn-success animated bounceInUp">Enviar Respuesta</button>
 		</form>
@@ -52,16 +51,16 @@
 		<br>
 		<br>
 		<footer style="font-size:20px;font-family:Arial"><span style="color:green">Bien:{{aciertos}}</span> <span style="color:red">Mal:{{desaciertos}}</span></footer>
-		<form id="datosEnviar" method="POST">
-			<input name="respEnv" id="respEnv" type="text" value="0" style="display:none">
-			<input name="tipoPregunta" id="tipoPregunta" type="text" value="choice" style="display:none">
-		</form>
 	</center>
 		
 	<script>
 	$(document).ready(function(){
 		$("#botonEnviar").click(function(){
-			$("#enviarRespuesta").submit()
+			if($("#respuestaEscrita").val() == ""){
+				alert("Por favor rellena el campo!")
+			}else{
+				$("#enviarRespuesta").submit();
+			}
 		});
 	});
 	</script>
