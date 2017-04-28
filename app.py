@@ -60,10 +60,11 @@ def examen():
 		#Si recibio para validar una respuesta escrita
 		if(tipoPregunta == "consignaVerificar"):
 			verificacionConsigna = examen_actual.gConsigna(respuestaRecibida)
-			if(verificacionConsigna["valida"] == "respuestaValida"):
-				examen_actual.respuestaAcertada()
-			else:
-				examen_actual.respuestaInvalida()
+			if("valida" in verificacionConsigna):
+				if(verificacionConsigna["valida"] == "respuestaValida"):
+					examen_actual.respuestaAcertada()
+				else:
+					examen_actual.respuestaInvalida()
 			return render_template("consignaVerificada.html", 
 														**validarDatos_get(verificacionConsigna) )
 
