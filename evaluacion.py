@@ -145,7 +145,8 @@ class Evaluacion():
 					"consigna":pElegida[0],
 					"aclaracion":pElegida[3],
 			}
-			return self.crear_datos(datos)
+			self.datos_actual = self.crear_datos(datos)
+			return self.datos_actual
 		else:
 			if(self.datos_actual["tipo"] == "consigna"):
 					dato_real = self.db_consigna[self.datos_actual["id"]][2]
