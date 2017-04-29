@@ -1,7 +1,7 @@
 ¿Según la OMS, que es la salud?
 choice
 facil
-La salud es la condicion de todo ser vivo que goza de un absoluto bienestar.++La salud es la condicion de malestar de todo ser vivo.++La salud es la capacidad de respirar de un ser vivo.
+La salud es la condición de todo ser vivo que goza de un absoluto bienestar.++La salud es la condicion de malestar de todo ser vivo.++La salud es la capacidad de respirar de un ser vivo.
 La salud es la condicion de todo ser vivo que goza de un absoluto bienestar tanto a nivel fisico como social.
 =
 Si una persona tiene fiebre, ¿Que se recomienda?
