@@ -1,14 +1,14 @@
+from flask.ext.login import LoginManager, UserMixin, \
+                                login_required, login_user, logout_user 
 from Driver import Examinar, dbUsers
 from flask import *
 from functools import wraps
-
 import random
 import os
-from flask.ext.login import LoginManager, UserMixin, \
-                                login_required, login_user, logout_user 
+
                                 
 iTestMe = Flask(__name__)
-
+iTestMe.secret_key = os.urandom(12)
 dbUsers.registrarUsuario("admin","admin")
 datosGenerales = { 
 		"titulo":"iTestMe",
@@ -104,5 +104,6 @@ def examen():
 
 if __name__ == "__main__":
 	print("[+]Iniciando iTestMe")
-	iTestMe.secret_key = os.urandom(12)
+	
+	print(os.urandom(12))
 	iTestMe.run()
