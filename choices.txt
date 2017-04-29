@@ -1,29 +1,24 @@
 ¿Según la OMS, que es la salud?
+choice
 facil
+La salud es la condicion de todo ser vivo que goza de un absoluto bienestar.++La salud es la condicion de malestar de todo ser vivo.++La salud es la capacidad de respirar de un ser vivo.
 La salud es la condicion de todo ser vivo que goza de un absoluto bienestar tanto a nivel fisico como social.
-La salud es la condicion de todo ser vivo que goza de un absoluto bienestar.
-La salud es la condicion de malestar de todo ser vivo.
-La salud es la capacidad de respirar de un ser vivo.
 =
 Si una persona tiene fiebre, ¿Que se recomienda?
+choice
 facil
+Necesita Reposo++Necesita caminar++Necesita tomar jugo++Necesita matar a alguien
 El reposo disminuye el metabolismo y por lo tanto el calor que produce el organismo se disminuye.
-Necesita Reposo
-Necesita caminar
-Necesita tomar jugo
-Necesita matar a alguien
 =
 ¿Que es la OMS?
+choice
 facil
+Organizacion Mundial de la Salud++Es un club de futbol++Organizacion Mundial de Satelites
 La Organización Mundial de la Salud es una institucion muy importante la cual es integrada por varios paises
-Organizacion Mundial de la Salud
-Es un club de futbol
-Organizacion Mundial de Satelites
 =
 Diciplina especializada para atender emergencias
+choice
 facil
+Emergentología.++Urgentología.++Emergentes.
 La Emergentología es vital para el trato de situaciones criticas en los hospitales.
-Emergentología.
-Urgentología.
-Emergentes.
 =FIN=
